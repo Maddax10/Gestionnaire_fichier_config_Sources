@@ -1,0 +1,111 @@
+﻿<Window x:Class="Gestionnaire_fichier_config.Views.Charged_Image_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:Gestionnaire_fichier_config.Views"
+        mc:Ignorable="d"
+        Title="Config Editor" Height="800" Width="1200" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen" DataContext="{StaticResource CIVM}" Style="{StaticResource WindowBase1}">
+
+    <!-- ===============GRILLE PRINCIPALE=============== -->
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ===============LABEL GAUCHE=============== -->
+        <Grid Grid.ColumnSpan="2" Style="{DynamicResource CloseGrid}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Config Editor" Style="{DynamicResource Label4Left}"/>
+            <TextBlock Style="{DynamicResource TextBlockTop}" Grid.Column="1">
+                
+                <Button Content="X" Command="{Binding Close_Window_Command}" Style="{DynamicResource CloseButton}" Template="{DynamicResource RectangleButton}"  HorizontalAlignment="Right" />
+
+            </TextBlock>
+        </Grid>
+
+        <!-- ===============LABEL GAUCHE=============== -->
+        <Grid Grid.Row="1" Style="{DynamicResource Grid2}">
+            <Label Content="Images du thème présent dans le fichier config" Style="{DynamicResource Label1Center}"/>
+        </Grid>
+
+        <!-- ===============LABEL DROITE=============== -->
+        <Grid Grid.Row="1" Grid.Column="1" Style="{DynamicResource Grid2}">
+            <Label Content="Images du thème" Style="{DynamicResource Label1Center}"/>
+        </Grid>
+
+        <!-- ===============GRILLE SECONDAIRE GAUCHE=============== -->
+        <Grid Grid.Row="2" Style="{DynamicResource Grid1}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="246*"/>
+                <RowDefinition Height="47*"/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+
+            <!-- ===============LISTBOX GAUCHE=============== -->
+
+            <ListBox ItemsSource="{Binding Collection_ImageModel_Left, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItemConfig, UpdateSourceTrigger=PropertyChanged}" Grid.RowSpan="2">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+
+                            <Image Source="{Binding Path, UpdateSourceTrigger=PropertyChanged}" Height="50" Width="540"/>
+                            <TextBlock Text="{Binding Name}" TextAlignment="Center"/>
+
+                        </StackPanel>
+                    </DataTemplate>
+
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <!-- ===============BOUTON GAUCHE=============== -->
+            <Grid Grid.Row="2" Style="{DynamicResource Grid3}">
+                <Button Content="Retirer" Grid.Row="2" Command="{Binding Remove_Command}" Style="{DynamicResource ButtonBase}" Template="{DynamicResource RoundedButton}"/>
+            </Grid>
+
+        </Grid>
+
+        <!-- ===============GRILLE SECONDAIRE DROITE=============== -->
+        <Border Grid.Row="2" Grid.Column="1" Style="{DynamicResource BorderGrid2Left}">
+            <Grid Style="{DynamicResource Grid1}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="80"/>
+                </Grid.RowDefinitions>
+
+                <!-- ===============LISTBOX DROITE=============== -->
+                <ListBox ItemsSource="{Binding Collection_ImageModel_Right, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedItemFolderTheme, UpdateSourceTrigger=PropertyChanged}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+
+                                <Image Source="{Binding Path, UpdateSourceTrigger=PropertyChanged}" Height="50" Width="540"/>
+                                <TextBlock Text="{Binding Name}" TextAlignment="Center"/>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <!-- ===============BOUTON DROITE=============== -->
+                <Grid Grid.Row="2" Style="{DynamicResource Grid3}">
+                    <Button Content="Ajouter" Grid.Row="2" Command="{Binding Add_Command}" Style="{DynamicResource ButtonBase}" Template="{DynamicResource RoundedButton}"/>
+                </Grid>
+
+            </Grid>
+        </Border>
+
+    </Grid>
+</Window>

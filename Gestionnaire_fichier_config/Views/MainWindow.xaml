@@ -1,0 +1,72 @@
+﻿<Window x:Class="Gestionnaire_fichier_config.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gestionnaire_fichier_config"
+        mc:Ignorable="d"
+        Title="Config Editor" Height="384.747" Width="500" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize" DataContext="{StaticResource MVM}" Style="{StaticResource WindowBase1}">
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+
+            </Grid.RowDefinitions>
+
+            <Grid Grid.ColumnSpan="2" Style="{DynamicResource CloseGrid}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Config Editor" Style="{DynamicResource Label4Left}"/>
+                <TextBlock Style="{DynamicResource TextBlockTop}" Grid.Column="1">
+                
+                <Button Content="X" Command="{Binding Close_Window_Command}" Style="{DynamicResource CloseButton}" Template="{DynamicResource RectangleButton}" HorizontalAlignment="Right" />
+
+                </TextBlock>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="118*"/>
+                    <ColumnDefinition Width="7*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Chemins d'accès au dossier du thème" Grid.Row="0" HorizontalContentAlignment="Center" Style="{DynamicResource Label2Center}" Grid.ColumnSpan="2"/>
+                <TextBox Text="{Binding Theme_Path, UpdateSourceTrigger=PropertyChanged}"  Style="{DynamicResource BiggerTextBoxBase}" Grid.Row="1" Grid.ColumnSpan="2"/>
+                <Button Content="Find theme folder" Command="{Binding Get_Theme_Path_Command}" Style="{DynamicResource SmallButton}" Template="{DynamicResource RoundedButton}" Grid.Row="2" Margin="150,10,121.762,10"/>
+
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Chemins d'accès au fichier config" Grid.Row="0" HorizontalContentAlignment="Center" Style="{DynamicResource Label2Center}"/>
+            <TextBox Text="{Binding Config_Path, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource BiggerTextBoxBase}" Grid.Row="1"/>
+                <Button Content="Find 'config.txt'" Command="{Binding Get_Config_Path_Command}" Style="{DynamicResource SmallButton}" Template="{DynamicResource RoundedButton}"  Grid.Row="2"/>
+
+            </Grid>
+
+            <Button Content="Charger les images" Command="{Binding Load_Images_Command}" Height="40" Style="{DynamicResource BigButton}" Template="{DynamicResource RoundedButton}" Grid.Row="3"/>
+
+        </Grid>
+
+</Window>
